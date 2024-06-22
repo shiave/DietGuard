@@ -1,49 +1,62 @@
-document.getElementById('addAllergen').addEventListener('click', () => {
-    let customAllergen = document.getElementById('customAllergen').value.trim();
-    if (customAllergen) {
-      chrome.storage.local.get(['customAllergens'], (result) => {
-        let customAllergens = result.customAllergens || [];
-        customAllergens.push(customAllergen);
-        chrome.storage.local.set({ customAllergens: customAllergens }, () => {
-          // Update the custom allergen list display
-          updateCustomAllergenList();
-          document.getElementById('customAllergen').value = '';
+document.addEventListener('DOMContentLoaded', () => {
+  const addAllergenButton = document.getElementById('addAllergen');
+  const checkPageButton = document.getElementById('checkPage');
+
+  if (addAllergenButton) {
+    addAllergenButton.addEventListener('click', () => {
+      const customAllergen = document.getElementById('customAllergen').value.trim();
+      if (customAllergen) {
+        chrome.storage.local.get(['customAllergens'], (result) => {
+          const customAllergens = result.customAllergens || [];
+          customAllergens.push(customAllergen);
+          chrome.storage.local.set({ customAllergens: customAllergens }, () => {
+            console.log('Custom allergen added:', customAllergen); // Debug log
+            updateCustomAllergenList();
+            document.getElementById('customAllergen').value = '';
+          });
+        });
+      }
+    });
+  }
+
+  if (checkPageButton) {
+    checkPageButton.addEventListener('click', () => {
+      const selectedAllergens = [];
+      document.querySelectorAll('input[name="allergen"]:checked').forEach((checkbox) => {
+        selectedAllergens.push(checkbox.value);
+      });
+
+      chrome.storage.local.set({ allergens: selectedAllergens }, () => {
+        console.log('Selected allergens stored:', selectedAllergens); // Debug log
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+          chrome.scripting.executeScript({
+            target: { tabId: tabs[0].id },
+            files: ['content.js']
+          }, () => {
+            if (chrome.runtime.lastError) {
+              console.error(chrome.runtime.lastError.message); // Debug log
+            } else {
+              console.log('Content script executed'); // Debug log
+            }
+          });
         });
       });
-    }
-  });
-  
+    });
+  }
+
   function updateCustomAllergenList() {
     chrome.storage.local.get(['customAllergens'], (result) => {
-      let customAllergens = result.customAllergens || [];
-      let customAllergenList = document.getElementById('customAllergenList');
+      const customAllergens = result.customAllergens || [];
+      const customAllergenList = document.getElementById('customAllergenList');
       customAllergenList.innerHTML = '';
       customAllergens.forEach(allergen => {
-        let item = document.createElement('div');
+        const item = document.createElement('div');
         item.textContent = allergen;
         customAllergenList.appendChild(item);
       });
     });
   }
-  
+
   // Initialize the custom allergen list on popup load
-  document.addEventListener('DOMContentLoaded', updateCustomAllergenList);
-  
-  document.getElementById('checkPage').addEventListener('click', () => {
-    let selectedAllergens = [];
-    document.querySelectorAll('input[name="allergen"]:checked').forEach((checkbox) => {
-      selectedAllergens.push(checkbox.value);
-    });
-  
-    // Store the selected allergens in storage
-    chrome.storage.local.set({ allergens: selectedAllergens }, () => {
-      // Send a message to the content script to check the page
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.scripting.executeScript({
-          target: { tabId: tabs[0].id },
-          files: ['content.js']
-        });
-      });
-    });
-  });
-  
+  updateCustomAllergenList();
+});
