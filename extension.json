@@ -1,17 +1,9 @@
 {
-   "_comment": "This is a comment --> this extension file will be used to access the permission settings of google chrome"
-}
-
-{
-    "extension": 2,
-    "name of extension": "Search for Food Allergies Extension",
-    "more details on what it will do": "uses web scrapping to search for food allergens when online grocery shopping",
-}
-{
-  "manifest_version": 3,
+  "extension_version": 3,
   "name": "Allergen Web Scraper",
   "version": "1.0",
-  "description": "Check for allergens on the current web page.",
+  "description": "Search for Food Allergens on the current web page.",
+  "more details on what it will do": "uses web scrapping to search for food allergens when online grocery shopping",
   "permissions": [
     "activeTab",
     "storage",
