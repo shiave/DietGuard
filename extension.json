@@ -6,8 +6,29 @@
     "extension": 2,
     "name of extension": "Search for Food Allergies Extension",
     "more details on what it will do": "uses web scrapping to search for food allergens when online grocery shopping",
-
-
+}
+{
+  "manifest_version": 3,
+  "name": "Allergen Web Scraper",
+  "version": "1.0",
+  "description": "Check for allergens on the current web page.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
 
 
     
