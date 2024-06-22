@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Allergen Web Scraper",
+  "version": "1.0",
+  "description": "Search for Food Allergens on the current web page.",
+  "more details on what it will do": "uses web scrapping to search for food allergens when online grocery shopping",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
+
+
+    
