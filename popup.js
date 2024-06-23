@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!customAllergens.includes('wheat')) {
             customAllergens.push('wheat');
           }
-          const gf_keywords = ['wheat flour', 'wheat germ', 'wheat starch'];
+          const gf_keywords = ['wheat flour', 'wheat germ', 'wheat starch','wheat'];
           gf_keywords.forEach(item => {
             if (!customAllergens.includes(item)) {
               customAllergens.push(item);
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Modify customAllergens to include eggs and milk
         chrome.storage.local.get(['customAllergens'], (result) => {
           let customAllergens = result.customAllergens || [];
-          const diabetic_keywords = ['high fructose','syrup','fructose','cake'];
+          const diabetic_keywords = ['high fructose','syrup','fructose','cake','sugar'];
           _keywords.forEach(item => {
             if (!customAllergens.includes(item)) {
               customAllergens.push(item);
