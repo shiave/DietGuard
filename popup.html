@@ -13,7 +13,7 @@
   </style>
 </head>
 <body>
-  <h3>Select Allergens:</h3>
+  <h3>Select Specific Allergens:</h3>
   <div>
     
     <input type="checkbox" id="peanuts" name="allergen" value="peanuts"> Peanuts<br>
@@ -30,8 +30,21 @@
     <br><br>
     <label for="fname">Other:</label>
     <input type="text" id="fname" name="fname"><br><br>
-    
+
+    <!-- Features to accomodate specific dietary restrictions (Vegetarian, Kosher, Vegan, Pescatarian, Gluten-free)-->
   </div>
+
+  <h3>Select Dietary Restrictions:</h3>
+    <div>
+        <input type="checkbox" id="Gluten-Free" name="allergen" value="Gluten-Free"> Gluten-Free<br>
+        <input type="checkbox" id="Kosher" name="allergen" value="Kosher"> Kosher<br>
+        <input type="checkbox" id="Vegetarian" name="allergen" value="Vegetarian"> Vegetarian<br>
+        <input type="checkbox" id="Vegan" name="allergen" value="Vegan"> Vegan<br>
+        <input type="checkbox" id="Diabetic" name="allergen" value="Diabetic"> Diabetic<br>
+        <!-- We can maybe modify this feature to allow users to specify the exact grams of sugar that their doctor has restricted them to-->
+    </div>
+
+
   <br> <br>
   <button class = "myButton" id="checkPage">Check Page</button>
   <style>
