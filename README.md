@@ -5,4 +5,4 @@ In this Google Chrome extension, we have developed a way for users to quickly lo
 This extension was developed in a way to promote equity, diversity, and inclusion, especially in the food space. The tool that we have created provides an opportunity for people who may have a lot of allergies or dietary restrictions to safely shop for groceries online. This extension can even help individuals quickly identify restricted foods on recipe websites to save time. 
 
 The DietGuard: Allergy & Restriction Checker Extension was developed using JavaScript, HTML, and CSS.
-We want to credit ChatGPT for helping us write, develop, and debug this code since we were not familiar with JS.
+We want to credit ChatGPT for helping us write, develop, and debug this code since we were not much familiar with JS.
