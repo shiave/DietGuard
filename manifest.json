@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Allergen Web Scraper",
+  "name": "DietGuard",
   "version": "1.0",
-  "description": "Search for Food Allergens on the current web page.",
+  "description": "Search for Food Restrictions on the current web page.",
   "permissions": [
     "activeTab",
     "storage",
